@@ -47,11 +47,11 @@ export default function Card4() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-6 md:px-20 justify-items-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4 sm:px-6 md:px-12 lg:px-24 justify-items-center">
       {cards.map((card, index) => (
         <div
           key={index}
-          className="bg-[#FBF5E9] p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-left max-w-sm w-full"
+          className="bg-[#FBF5E9] p-5 sm:p-6 md:p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-left w-full max-w-xs sm:max-w-sm md:max-w-md"
         >
           {/* Icon container */}
           <div className="w-12 h-12 bg-[#f3e9e2] rounded-full mb-4 flex items-center justify-center">
@@ -59,17 +59,19 @@ export default function Card4() {
           </div>
 
           {/* Title */}
-          <h1 className="text-xl font-extralight text-gray-800 mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
             {card.title}
-          </h1>
+          </h2>
 
           {/* Description */}
-          <p className="text-gray-600 mb-4 font-extralight text-xs">{card.description}</p>
+          <p className="text-gray-600 mb-4 text-sm sm:text-base">
+            {card.description}
+          </p>
 
-          {/* Action button */}
-          <h2 className="text-[#824800] font-medium hover:underline cursor-pointer flex items-center gap-2">
+          {/* Action link */}
+          <div className="text-[#824800] font-medium hover:underline cursor-pointer flex items-center gap-1 text-sm sm:text-base">
             {card.action} <span className="text-lg">→</span>
-          </h2>
+          </div>
         </div>
       ))}
     </div>
