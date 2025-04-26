@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,13 +30,13 @@ const Navbar: React.FC = () => {
         {/* Center: Nav links */}
         <div className="hidden md:flex items-center gap-4 font-urbanist font-bold text-[#435058] text-[14.19px] leading-[14.19px] tracking-[0.14px]">
         {['Home', 'About Us', 'Library Listing', 'Contact Us'].map((item, i) => (
-          <a
+          <Link
             key={i}
             href="#"
             className="px-4 py-2 rounded-full transition duration-200 hover:bg-[#435058] hover:text-[#FEEDC1]"
           >
             {item}
-          </a>
+          </Link>
         ))}
       </div>
 

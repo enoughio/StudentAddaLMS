@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Cards2() {
   const cardData = [
     {
@@ -24,9 +26,10 @@ export default function Cards2() {
           key={index}
           className="flex flex-col items-center text-center p-4 sm:p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
         >
-          <img
+          <Image
             src={card.imgSrc}
             alt={card.altText}
+            fill
             className="w-full max-w-[260px] h-auto object-contain mb-6"
           />
           <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
