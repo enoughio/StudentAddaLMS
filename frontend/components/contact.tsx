@@ -71,7 +71,7 @@ export default function ContactPage() {
             </div>
             <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-4">
               Get in touch with us. <br className="hidden sm:block" />
-              We're here to assist <br className="hidden sm:block" />you.
+              We are here to assist <br className="hidden sm:block" />you.
             </h1>
           </div>
 

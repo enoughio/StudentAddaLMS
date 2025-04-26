@@ -75,12 +75,12 @@ export default function Home() {
         {/* Text1 */}
         <div className="py-4 sm:py-6 md:py-8 lg:py-12 mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-8">
           <h1 className="font-[Plus_Jakarta_Sans] font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[28px] sm:leading-[36px] md:leading-[46px] lg:leading-[50px] tracking-[0.29px] text-black text-center mx-auto px-4">
-            <span className="font-medium">Empowering minds</span>{" "}
+            <span className="font-medium">Empowering minds</span>
             <span className="text-black font-extralight">
               with seamless access to knowledge,
             </span>
             <br className="hidden sm:block" />
-            collaborative tools, and smarter learning spaces."
+            collaborative tools, and smarter learning spaces.
           </h1>
         </div>
       </div>
