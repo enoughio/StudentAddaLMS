@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Cards1() {
   const cardData = [
     {
@@ -28,31 +30,40 @@ export default function Cards1() {
       icon: "/home/card13.png"
     }
   ];
-
+  
   return (
     <div className="w-full py-16 mt-4 px-4 sm:px-6 lg:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
         {cardData.map((card, index) => (
           <div
             key={index}
-            className="bg-[#ECE3DA] w-[21.5rem] h-[15rem] p-5 rounded-xl  transition duration-300 border-[0.6px] border-[#BF847EBD]"
+            className="bg-[#ECE3DA] w-[21.5rem] h-[15rem] p-5 rounded-xl transition duration-300 border-[0.6px] border-[#BF847EBD]"
           >
             {/* Icon in black circle */}
             <div className="bg-black w-12 h-12 rounded-full mb-4 flex items-center justify-center">
-              <img
+              <Image
                 src={card.icon}
                 alt="Icon"
-                className="w-6 h-6 object-contain"
+                width={24}
+                height={24}
+                className="object-contain"
               />
             </div>
 
             {/* Title */}
-            <h2 className="text-xl text-[#824800] font-semibold mb-2">{card.title}</h2>
+            <h2 className="font-[Plus_Jakarta_Sans] font-bold text-sm leading-[18.12px] tracking-normal text-[#824800] mb-2">
+              {card.title}
+            </h2>
 
             {/* Description */}
             <div className="text-gray-700 space-y-1">
               {card.description.map((text, idx) => (
-                <p className="text-sm font-light" key={idx}>{text}</p>
+                <p
+                  className="font-[Plus_Jakarta_Sans] font-semibold text-xs leading-[18.12px] tracking-normal"
+                  key={idx}
+                >
+                  {text}
+                </p>
               ))}
             </div>
           </div>

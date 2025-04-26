@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <nav className="w-full bg-[#ECE3DA] font-urbanist  sticky top-0 z-50">
+    <nav className="w-full bg-[#ECE3DA] font-urbanist  top-0 z-50">
       <div className="w-full mx-auto px-8 py-3  flex items-center justify-between">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
