@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu Overlay - Absolute positioning prevents content shifting */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg z-50 border-t border-gray-200">
+        <div className="md:hidden absolute top-12 left-0 w-full bg-white shadow-lg z-50 border-t border-gray-200">
           <div className="px-3 py-2 flex flex-col gap-2 sm:gap-3">
             {navItems.map((item, i) => (
               <a

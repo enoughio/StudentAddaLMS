@@ -4,11 +4,11 @@ import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Cards1 from "@/components/homepage_components/homepage_card";
 import Cards2 from "@/components/homepage_components/homepageimage_card";
-import Card3 from "@/components/homepage_components/homepage_card3";
+// import Card3 from "@/components/homepage_components/homepage_card3";
 import Card4 from "@/components/homepage_components/homepage_card4";
 import Footer from "@/components/footer";
 import { ArrowRight } from 'lucide-react';
-import { plusJakarta } from './fonts';
+// import { plusJakarta } from './fonts';
 import Intro from "@/pages/intro"
 export default function Home() {
   return (
