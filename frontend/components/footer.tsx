@@ -1,4 +1,5 @@
 // import { Facebook, Twitter, Linkedin } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,7 +8,8 @@ export default function Footer() {
     <div className="max-w-full mx-9 flex flex-col lg:flex-row justify-between gap-16 md:gap-28 mb-6 items-center lg:items-start text-center lg:text-left">
       {/* Logo and Tagline */}
       <div className="flex flex-col items-center lg:items-start w-full lg:w-2/5">
-        <img
+        <Image
+          fill
           src="/home/logo2.png"
           alt="Footer Visual"
           className="rounded-xl w-48 h-8 object-cover"
@@ -80,9 +82,9 @@ export default function Footer() {
   
       {/* Social Icons */}
       <div className="flex gap-4 justify-center">
-        <img src="/home/face.png" alt="Facebook" className="w-5 h-5 object-contain" />
-        <img src="/home/tweet.png" alt="Twitter" className="w-5 h-5 object-contain" />
-        <img src="/home/linked.png" alt="LinkedIn" className="w-5 h-5 object-contain" />
+        <Image fill src="/home/face.png" alt="Facebook" className="w-5 h-5 object-contain" />
+        <Image fill src="/home/tweet.png" alt="Twitter" className="w-5 h-5 object-contain" />
+        <Image fill src="/home/linked.png" alt="LinkedIn" className="w-5 h-5 object-contain" />
       </div>
     </div>
   

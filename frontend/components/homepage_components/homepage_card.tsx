@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { plusJakarta } from '@/app/fonts';
 
 interface CardItem {
   title: string;
@@ -58,7 +57,7 @@ export default function Cards1() {
             </div>
 
             {/* Title */}
-            <h2 className={`${plusJakarta.className} font-bold text-sm leading-[18.12px] tracking-normal text-[#824800] mb-2`}>
+            <h2 className={` font-bold text-sm leading-[18.12px] tracking-normal text-[#824800] mb-2`}>
               {card.title}
             </h2>
 
@@ -66,7 +65,7 @@ export default function Cards1() {
             <div className="text-gray-700 space-y-1">
               {card.description.map((text, idx) => (
                 <p
-                  className={`${plusJakarta.className} font-semibold text-xs leading-[18.12px] tracking-normal`}
+                  className={` font-semibold text-xs leading-[18.12px] tracking-normal`}
                   key={idx}
                 >
                   {text}

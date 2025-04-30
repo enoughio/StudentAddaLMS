@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { urbanist } from '@/app/fonts';
 
 interface NavItem {
   label: string;
@@ -55,7 +54,7 @@ const Navbar: React.FC = () => {
     <nav 
       className={`w-full sticky top-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-[#ECE3DA]/95 shadow-md backdrop-blur-sm' : 'bg-[#ECE3DA]'
-      } ${urbanist.className}`}
+      }`}
       aria-label="Main navigation"
     >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
