@@ -1,7 +1,14 @@
 import Image from "next/image";
+import { plusJakarta } from '@/app/fonts';
+
+interface CardItem {
+  title: string;
+  description: string[];
+  icon: string;
+}
 
 export default function Cards1() {
-  const cardData = [
+  const cardData: CardItem[] = [
     {
       title: "Smart Library Access",
       description: [
@@ -32,18 +39,18 @@ export default function Cards1() {
   ];
   
   return (
-    <div className="w-full py-16 mt-4 px-4 sm:px-6 lg:px-12">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
+    <div className="w-full py-12 md:py-16 mt-4 px-4 sm:px-6 lg:px-12">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {cardData.map((card, index) => (
           <div
             key={index}
-            className="bg-[#ECE3DA] w-[21.5rem] h-[15rem] p-5 rounded-xl transition duration-300 border-[0.6px] border-[#BF847EBD]"
+            className="bg-[#ECE3DA] w-full max-w-[21.5rem] h-auto min-h-[15rem] p-5 rounded-xl transition duration-300 border-[0.6px] border-[#BF847EBD] hover:shadow-lg"
           >
             {/* Icon in black circle */}
             <div className="bg-black w-12 h-12 rounded-full mb-4 flex items-center justify-center">
               <Image
                 src={card.icon}
-                alt="Icon"
+                alt={`${card.title} Icon`}
                 width={24}
                 height={24}
                 className="object-contain"
@@ -51,7 +58,7 @@ export default function Cards1() {
             </div>
 
             {/* Title */}
-            <h2 className="font-[Plus_Jakarta_Sans] font-bold text-sm leading-[18.12px] tracking-normal text-[#824800] mb-2">
+            <h2 className={`${plusJakarta.className} font-bold text-sm leading-[18.12px] tracking-normal text-[#824800] mb-2`}>
               {card.title}
             </h2>
 
@@ -59,7 +66,7 @@ export default function Cards1() {
             <div className="text-gray-700 space-y-1">
               {card.description.map((text, idx) => (
                 <p
-                  className="font-[Plus_Jakarta_Sans] font-semibold text-xs leading-[18.12px] tracking-normal"
+                  className={`${plusJakarta.className} font-semibold text-xs leading-[18.12px] tracking-normal`}
                   key={idx}
                 >
                   {text}

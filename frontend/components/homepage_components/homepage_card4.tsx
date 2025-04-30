@@ -1,9 +1,18 @@
+import { ReactNode } from 'react';
+
+interface CardItem {
+  title: string;
+  description: string;
+  action: string;
+  icon: ReactNode;
+}
+
 export default function Card4() {
-  const cards = [
+  const cards: CardItem[] = [
     {
       title: "Are you individual?",
       description:
-        "Keep everything that’s important to you and your family shareable and safe in one place.",
+        "Keep everything that's important to you and your family shareable and safe in one place.",
       action: "Create an account",
       icon: (
         <svg
@@ -69,9 +78,10 @@ export default function Card4() {
           </p>
 
           {/* Action link */}
-          <div className="text-[#824800] font-medium hover:underline cursor-pointer flex items-center gap-1 text-sm sm:text-base">
-            {card.action} <span className="text-lg">→</span>
-          </div>
+          <button className="text-[#824800] font-medium hover:underline cursor-pointer flex items-center gap-1 text-sm sm:text-base group">
+            {card.action}{" "}
+            <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
+          </button>
         </div>
       ))}
     </div>
