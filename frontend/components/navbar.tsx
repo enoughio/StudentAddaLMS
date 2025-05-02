@@ -11,8 +11,8 @@ const Navbar: React.FC = () => {
   const navItems = ['Home', 'About Us', 'Library Listing', 'Contact Us'];
 
   return (
-    <nav className="w-full bg-[#ECE3DA] font-urbanist top-0 z-50">
-      <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
+    <nav className="w-full bg-[#ECE3DA] font-urbanist top-2 z-50">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
         
         {/* Left: Hamburger Menu Button (Mobile) */}
         <div className="flex items-center md:hidden">

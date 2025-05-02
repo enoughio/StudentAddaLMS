@@ -1,142 +1,144 @@
 "use client"
-import { useState } from "react";
-import { Search, MapPin, Heart, Filter, Map, X } from "lucide-react";
-import Navbar from "@/components/navbar";
-import LibraryList from "@/components/library_listing1/library_listing_cards";
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import InputLibrary from "@/components/input";
+import { ChevronDown } from "lucide-react";
+import LibraryCard from "@/components/library_listing1/librarycard";
 
-
-export default function Page() {
-  const [searchQuery, setSearchQuery] = useState("");
-  
+export default function AllLibraries() {
   return (
-    <div className="bg-[#ECE3DA] min-h-screen w-full">
+    <div className="bg-[#ECE3DA]">
       <Navbar />
 
-      <div className="px-4 py-8 bg-[#ECE3DA]">
-        <h1 className="text-3xl font-bold mb-6">
-          Explore <span className="text-amber-700">Libraries Near You</span>
-        </h1>
-
-        {/* Search Bar */}
-        <div className="bg-white p-4 rounded-lg shadow-md mb-8">
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex-1 relative">
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by library name or location" 
-                className="w-full py-3 px-4 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              />
-              <Search className="absolute right-3 top-3 text-gray-400" size={20} />
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <button className="flex items-center gap-1 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">
-                <Filter size={18} />
-                <span>Filter</span>
-              </button>
-              
-              <button className="flex items-center gap-1 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">
-                <Map size={18} />
-                <span>Map view</span>
-              </button>
-              
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery("")}
-                  className="flex items-center gap-1 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md"
-                >
-                  <X size={18} />
-                  <span>Clear</span>
-                </button>
-              )}
-              
-              <button className="px-4 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">
-                Search
-              </button>
-            </div>
-          </div>
+      <div className="main_section relative px-4 md:px-[10%] bg-[#ECE3DA] min-h-screen w-full">
+        {/* Header */}
+        <div className="p-2 py-10 mt-4 text-center text-[32px] md:text-[45px] leading-[1.2] tracking-[0.36px] font-urbanist text-gray-900">
+          <span className="font-semibold">Explore </span>Libraries Near You
         </div>
 
-        {/* Main Content Area */}
-        <div className="flex flex-col md:flex-row gap-6">
-          {/* Filter Sidebar */}
-          <div className="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md h-fit">
-            <h2 className="text-xl font-semibold mb-4">Filter</h2>
-            
-            <div className="mb-4">
-              <h3 className="font-medium mb-2">Location</h3>
-              <div className="relative">
-                <input 
-                  type="text" 
-                  placeholder="All locations" 
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                />
-                <MapPin className="absolute right-3 top-2 text-gray-400" size={18} />
+        <InputLibrary />
+
+        {/* Filter and Content Section */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Left Filter */}
+          <div className="p-4 w-full lg:w-[30%] space-y-6">
+            <div className="flex justify-between items-center">
+              <div className="text-lg md:text-[19.65px] font-urbanist font-medium">
+                Filter
+              </div>
+              <div className="hidden">Map</div>
+            </div>
+
+            {/* Location */}
+            <div>
+              <h1 className="font-urbanist font-medium text-[18px] mb-2">Location</h1>
+              <input
+                type="text"
+                placeholder="All location"
+                className="w-full px-3 py-2 rounded border border-black"
+              />
+            </div>
+
+            {/* Seats */}
+            <div>
+              <h1 className="font-urbanist font-medium text-[18px] mb-2">Available Seats</h1>
+              <div className="space-y-2">
+                {["5+ seats", "10+ seats", "20+ seats"].map((seat, index) => (
+                  <label key={index} className="flex items-center gap-4">
+                    <input
+                      type="checkbox"
+                      className="w-5 h-5 border border-black rounded-sm appearance-none checked:bg-transparent checked:border-black"
+                    />
+                    <span className="text-sm font-urbanist">{seat}</span>
+                  </label>
+                ))}
               </div>
             </div>
-            
-            <div className="mb-4">
-              <h3 className="font-medium mb-2">Available Seats</h3>
+
+            {/* Membership */}
+            <div>
+              <h1 className="font-urbanist font-medium text-[18px] mb-2">Membership</h1>
               <div className="space-y-2">
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>5+ seats</option>
-                </select>
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>10+ seats</option>
-                </select>
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>20+ seats</option>
-                </select>
+                {["Free", "Paid"].map((type, index) => (
+                  <label key={index} className="flex items-center gap-4">
+                    <input
+                      type="checkbox"
+                      className="w-5 h-5 border border-black rounded-sm appearance-none checked:bg-transparent checked:border-black"
+                    />
+                    <span className="text-sm font-urbanist">{type}</span>
+                  </label>
+                ))}
               </div>
             </div>
-            
-            <div className="mb-4">
-              <h3 className="font-medium mb-2">Membership</h3>
-              <div className="space-y-2">
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>Free</option>
-                </select>
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>Paid</option>
-                </select>
-              </div>
-            </div>
-            
-            <div className="mb-4">
-              <h3 className="font-medium mb-2">Rating</h3>
-              <div className="space-y-2">
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>3+</option>
-                </select>
-                <select className="w-full p-2 border border-gray-300 rounded-md">
-                  <option>4+</option>
-                </select>
+
+            {/* Rating */}
+            <div>
+              <h1 className="font-urbanist font-medium text-[18px] mb-2">Rating</h1>
+              <div className="space-y-1">
+                {["3+", "4+"].map((rating, index) => (
+                  <label key={index} className="flex items-center gap-4">
+                    <input
+                      type="checkbox"
+                      className="w-5 h-5 border border-black rounded-sm appearance-none checked:bg-transparent checked:border-black"
+                    />
+                    <span className="text-sm font-urbanist">{rating}</span>
+                  </label>
+                ))}
               </div>
             </div>
           </div>
-          
-          {/* Results Section */}
-          <div className="w-full md:w-3/4">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold">1,234 Results</h2>
-              <div className="flex items-center gap-2">
-                <span className="text-gray-500">Sort by:</span>
-                <h2 className="font-semibold">Newest</h2>
+
+          {/* Right Content */}
+          <div className="w-full lg:w-[70%] p-4">
+            {/* Top Header */}
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <p className="font-urbanist font-medium text-[18px]">1,2314 Results</p>
+
+              <div className="flex items-center space-x-2">
+                <p className="text-sm font-urbanist">Sort by</p>
+                <div className="relative flex items-center">
+                  <select className="bg-transparent border px-4 py-2 rounded text-sm font-urbanist text-gray-700 cursor-pointer">
+                    <option>Newest</option>
+                    <option>Medium</option>
+                    <option>Oldest</option>
+                  </select>
+                  <ChevronDown className="ml-[-24px]" />
+                </div>
               </div>
             </div>
-            
-            {/* Library Card */}
-            <LibraryList/>
-            
-            {/* Additional libraries would be listed here */}
+
+            {/* Cards */}
+            <LibraryCard />
+
+            {/* Pagination */}
+            <div className="flex flex-wrap space-x-2 mt-6">
+              {[1, 2, 3, 4, 5].map((page, index) => (
+                <button
+                  key={index}
+                  className={`w-10 h-10 rounded-full border flex items-center justify-center font-urbanist font-medium text-[16px]
+                    ${page === 1 ? 'bg-black text-white' : 'bg-transparent text-gray-500 hover:text-black hover:border-black'}
+                    ${page > 3 ? 'opacity-50' : ''}`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:text-black">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }
