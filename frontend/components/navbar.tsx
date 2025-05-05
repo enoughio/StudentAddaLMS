@@ -1,22 +1,28 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { X } from 'lucide-react';
-import Image from 'next/image';
+import { useState } from "react";
+import { X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const navItems = ['Home', 'About Us', 'Library Listing', 'Contact Us'];
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Library Listing", href: "/libraryisting" },
+    { name: "Forum", href: "/forum" },
+  ];
 
   return (
     <nav className="w-full bg-[#ECE3DA] font-urbanist top-2 z-50">
       <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
-        
         {/* Left: Hamburger Menu Button (Mobile) */}
         <div className="flex items-center md:hidden">
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-0 sm:p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-[#435058]"
             aria-expanded={isOpen}
@@ -31,7 +37,6 @@ const Navbar: React.FC = () => {
                 height={24}
                 alt="Menu"
                 className="object-cover"
-                
               />
             )}
           </button>
@@ -47,10 +52,9 @@ const Navbar: React.FC = () => {
               height={28}
               alt="StudentAdda Logo"
               className="object-cover"
-             
             />
           </div>
-          
+
           {/* Mobile Logo */}
           <div className="flex flex-col items-center md:hidden">
             <Image
@@ -70,13 +74,13 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center justify-center flex-1 mx-2 lg:mx-4">
           <div className="flex items-center gap-2 lg:gap-4 font-urbanist font-bold text-[#435058] text-sm lg:text-base">
             {navItems.map((item, i) => (
-              <a
+              <Link
                 key={i}
-                href="#"
+                href={item.href}
                 className="px-3 py-1.5 lg:px-4 lg:py-2 rounded-full transition duration-200 hover:bg-[#435058] hover:text-[#FEEDC1]"
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
           </div>
         </div>
@@ -88,7 +92,7 @@ const Navbar: React.FC = () => {
             className="flex items-center gap-2 bg-[#435058] text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-full transition hover:bg-[#36424a]"
           >
             <span className="font-urbanist font-bold text-sm lg:text-base">
-              {isLoggedIn ? 'Sign Out' : 'Sign In'}
+              {isLoggedIn ? "Sign Out" : "Sign In"}
             </span>
             <Image
               src="/home/signin.png"
@@ -106,28 +110,30 @@ const Navbar: React.FC = () => {
         <div className="md:hidden absolute top-12 left-0 w-full bg-white shadow-lg z-50 border-t border-gray-200">
           <div className="px-3 py-2 flex flex-col gap-2 sm:gap-3">
             {navItems.map((item, i) => (
-              <a
+              <Link
                 key={i}
-                href="#"
+                href={item.href}
                 className="px-3 py-2 sm:px-4 sm:py-3 rounded-md font-semibold text-[#435058] transition hover:bg-[#f5f0ea]"
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
 
-<button
-  onClick={() => setIsLoggedIn(!isLoggedIn)}
-  className="flex items-center justify-center gap-1 text-white bg-[#435058] rounded-md transition hover:bg-[#36424a] text-xs px-2 py-1 sm:px-1  md:text-sm md:px-2 md:py-1.5 lg:text-base lg:px-4 lg:py-2"
->
-  <span className="font-medium">{isLoggedIn ? 'Sign Out' : 'Sign In'}</span>
-  <Image
-    src="/home/signin.png"
-    alt="Sign"
-    width={14}
-    height={14}
-    className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5"
-  />
-</button>
+            <button
+              onClick={() => setIsLoggedIn(!isLoggedIn)}
+              className="flex items-center justify-center gap-1 text-white bg-[#435058] rounded-md transition hover:bg-[#36424a] text-xs px-2 py-1 sm:px-1  md:text-sm md:px-2 md:py-1.5 lg:text-base lg:px-4 lg:py-2"
+            >
+              <span className="font-medium">
+                {isLoggedIn ? "Sign Out" : "Sign In"}
+              </span>
+              <Image
+                src="/home/signin.png"
+                alt="Sign"
+                width={14}
+                height={14}
+                className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5"
+              />
+            </button>
           </div>
         </div>
       )}
