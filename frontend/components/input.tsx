@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function InputLibrary(){
     return (
-         <div className="input_section w-full p-1 px-3 rounded-full bg-white rounded-full shadow-sm">
+         <div className="input_section w-full p-1 px-3 rounded-full bg-white shadow-sm">
                              {/* Input and Buttons Row */}
                              <div className="flex  gap-3 items-center">
                                 {/* Input Field */}
