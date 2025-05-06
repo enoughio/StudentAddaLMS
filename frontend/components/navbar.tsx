@@ -1,142 +1,164 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { X } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Library Listing", href: "/libraryisting" },
-    { name: "Forum", href: "/forum" },
+  // Navigation items
+  const navItems: NavItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Library Listing', href: '/libraries' },
+    { label: 'Contact Us', href: '/contact' },
   ];
 
-  return (
-    <nav className="w-full bg-[#ECE3DA] font-urbanist top-2 z-50">
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
-        {/* Left: Hamburger Menu Button (Mobile) */}
-        <div className="flex items-center md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-0 sm:p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-[#435058]"
-            aria-expanded={isOpen}
-            aria-label="Toggle navigation menu"
-          >
-            {isOpen ? (
-              <X size={24} className="text-[#435058]" />
-            ) : (
-              <Image
-                src="/home/hamburger.png"
-                width={24}
-                height={24}
-                alt="Menu"
-                className="object-cover"
-              />
-            )}
-          </button>
-        </div>
+  // Handle scroll event for navbar styling changes
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
 
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isOpen && !target.closest('#mobile-menu') && !target.closest('#menu-button')) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isOpen]);
+
+  return (
+    <nav 
+      className={`w-full sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-[#ECE3DA]/95 shadow-md backdrop-blur-sm' : 'bg-[#ECE3DA]'
+      }`}
+      aria-label="Main navigation"
+    >
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
         {/* Left: Logo */}
-        <div className="flex items-center">
-          {/* Desktop Logo */}
-          <div className="hidden md:block">
+        <div className="flex items-center gap-2">
+          <Link href="/" aria-label="StudentAdda Home">
             <Image
               src="/home/logo.png"
               width={158}
               height={28}
               alt="StudentAdda Logo"
-              className="object-cover"
+              className="w-32 sm:w-40 h-auto object-contain"
+              priority
             />
-          </div>
-
-          {/* Mobile Logo */}
-          <div className="flex flex-col items-center md:hidden">
-            <Image
-              src="/home/responsive_logo.png"
-              alt="StudentAdda Logo"
-              width={32}
-              height={32}
-              className="object-cover"
-            />
-            <span className="text-xs text-[#435058] font-bold mt-0.5">
-              StudentAdda
-            </span>
-          </div>
+          </Link>
         </div>
 
-        {/* Center: Nav Links (Desktop) */}
-        <div className="hidden md:flex items-center justify-center flex-1 mx-2 lg:mx-4">
-          <div className="flex items-center gap-2 lg:gap-4 font-urbanist font-bold text-[#435058] text-sm lg:text-base">
-            {navItems.map((item, i) => (
-              <Link
-                key={i}
-                href={item.href}
-                className="px-3 py-1.5 lg:px-4 lg:py-2 rounded-full transition duration-200 hover:bg-[#435058] hover:text-[#FEEDC1]"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+        {/* Center: Nav links */}
+        <div className="hidden md:flex items-center gap-2 lg:gap-4 font-bold text-[#435058] text-sm lg:text-[14.19px] leading-[14.19px] tracking-[0.14px]">
+          {navItems.map((item, i) => (
+            <Link
+              key={i}
+              href={item.href}
+              className="px-3 lg:px-4 py-2 rounded-full transition duration-200 hover:bg-[#435058] hover:text-[#FEEDC1] focus:outline-none focus:ring-2 focus:ring-[#435058] focus:ring-opacity-50"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
-        {/* Right: Sign In Button (Desktop) */}
+        {/* Right: Sign In */}
         <div className="hidden md:flex items-center">
           <button
             onClick={() => setIsLoggedIn(!isLoggedIn)}
-            className="flex items-center gap-2 bg-[#435058] text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-full transition hover:bg-[#36424a]"
+            className="flex items-center gap-2 bg-[#435058] text-white px-4 py-2 rounded-full hover:bg-[#374349] transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#435058] focus:ring-opacity-50"
+            aria-label={isLoggedIn ? "Sign Out" : "Sign In"}
           >
-            <span className="font-urbanist font-bold text-sm lg:text-base">
-              {isLoggedIn ? "Sign Out" : "Sign In"}
+            <span className="font-bold text-[15.61px] leading-[22.71px] tracking-[0.14px] whitespace-nowrap">
+              {isLoggedIn ? 'Sign Out' : 'Sign In'}
             </span>
             <Image
               src="/home/signin.png"
-              alt="Sign In Icon"
-              width={16}
-              height={16}
-              className="lg:w-5 lg:h-5"
+              alt=""
+              width={20}
+              height={20}
+              className="w-5 h-5 object-contain"
+              aria-hidden="true"
             />
+          </button>
+        </div>
+
+        {/* Mobile menu button */}
+        <div className="md:hidden">
+          <button 
+            id="menu-button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#435058] focus:ring-opacity-50"
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={24} color='#435058' /> : <Menu size={24} color='#435058' />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay - Absolute positioning prevents content shifting */}
-      {isOpen && (
-        <div className="md:hidden absolute top-12 left-0 w-full bg-white shadow-lg z-50 border-t border-gray-200">
-          <div className="px-3 py-2 flex flex-col gap-2 sm:gap-3">
-            {navItems.map((item, i) => (
-              <Link
-                key={i}
-                href={item.href}
-                className="px-3 py-2 sm:px-4 sm:py-3 rounded-md font-semibold text-[#435058] transition hover:bg-[#f5f0ea]"
-              >
-                {item.name}
-              </Link>
-            ))}
-
-            <button
-              onClick={() => setIsLoggedIn(!isLoggedIn)}
-              className="flex items-center justify-center gap-1 text-white bg-[#435058] rounded-md transition hover:bg-[#36424a] text-xs px-2 py-1 sm:px-1  md:text-sm md:px-2 md:py-1.5 lg:text-base lg:px-4 lg:py-2"
+      {/* Mobile Menu - with smooth transition */}
+      <div
+        id="mobile-menu"
+        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-4 pb-4 pt-2 flex flex-col gap-3 font-semibold text-[#435058] bg-[#ECE3DA] border-t border-[#435058]/10">
+          {navItems.map((item, i) => (
+            <Link
+              key={i}
+              href={item.href}
+              className="px-4 py-2 rounded-md transition duration-200 hover:bg-[#435058] hover:text-[#FEEDC1] focus:outline-none focus:ring-2 focus:ring-[#435058] focus:ring-opacity-50"
+              onClick={() => setIsOpen(false)}
             >
-              <span className="font-medium">
-                {isLoggedIn ? "Sign Out" : "Sign In"}
-              </span>
-              <Image
-                src="/home/signin.png"
-                alt="Sign"
-                width={14}
-                height={14}
-                className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5"
-              />
-            </button>
-          </div>
+              {item.label}
+            </Link>
+          ))}
+
+          <button
+            onClick={() => {
+              setIsLoggedIn(!isLoggedIn);
+              setIsOpen(false);
+            }}
+            className="mt-2 flex items-center justify-center gap-2 bg-[#435058] text-white px-4 py-2 rounded-full hover:bg-[#374349] transition duration-200"
+            aria-label={isLoggedIn ? "Sign Out" : "Sign In"}
+          >
+            <span>{isLoggedIn ? 'Sign Out' : 'Sign In'}</span>
+            <Image
+              src="/home/signin.png"
+              alt=""
+              width={20}
+              height={20}
+              className="w-5 h-5 object-contain"
+              aria-hidden="true"
+            />
+          </button>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

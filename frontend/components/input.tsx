@@ -6,7 +6,7 @@ export default function InputLibrary(){
                              {/* Input and Buttons Row */}
                              <div className="flex  gap-3 items-center">
                                 {/* Input Field */}
-                                <Image src="/listings3/search.png" width={20} height={20}/>
+                                <Image alt='input image' src="/listings3/search.png" width={20} height={20}/>
                                 <input
                                 type="text"
                                 placeholder="Search by library name or location"
@@ -14,14 +14,14 @@ export default function InputLibrary(){
                                 />
         
                                 {/* Buttons */}
-                                <Image src="/listings3/separator.png" width={1} height={4}/>
+                                <Image alt='input image' src="/listings3/separator.png" width={1} height={4}/>
                                 <button className="px-4 py-2 font-extralight bg-white text-sm flex items-center gap-2 hover:bg-gray-100">
-                                    <Image src="/listings3/filter.png" width={14} height={14}/> Filter
+                                    <Image alt='input image' src="/listings3/filter.png" width={14} height={14}/> Filter
                                 </button>
         
-                                 <Image src="/listings3/separator.png" width={1} height={4}/>
+                                 <Image alt='input image' src="/listings3/separator.png" width={1} height={4}/>
                                 <button className="px-4 py-2 bg-white text-sm flex  items-center gap-2 hover:bg-gray-100">
-                                    <Image src="/listings3/map.png" width={14} height={14}/><span className="whitespace-nowrap font-extralight"> Map view</span>
+                                    <Image alt='input image' src="/listings3/map.png" width={14} height={14}/><span className="whitespace-nowrap font-extralight"> Map view</span>
                                 </button>
         
                                 <span className="text-gray-500">|</span> {/* Separator */}
